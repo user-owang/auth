@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Log in{% endblock %} {% block content
+%}
+<h1 class="display-1">Sign in</h1>
+<p class="lead">
+  Returning users log in below. If you are a new user, click
+  <a href="/register">here</a> to register.
+</p>
+<form action="/login" method="POST">
+  {{ form.hidden_tag() }} {% for field in form %} {% if field.widget.input_type
+  != 'hidden' %}
+  <p>{{ field.label }} {{ field }}</p>
+  <p><small>{% for error in field.errors %}{{ error }}{% endfor %}</small></p>
+  {% endif %} {% endfor %}
+  <input type="submit" value="Register" />
+</form>
+{% endblock %}
