@@ -2,12 +2,12 @@
 {% block content %}
 <h1 class="display-1">New User Sign Up</h1>
 <p class="lead">Register below to create an account!</p>
-<form action="/registration" method="POST">
+<form action="/register" method="POST">
   {{ form.hidden_tag() }} {% for field in form %} {% if field.widget.input_type
   != 'hidden' %}
-  <p>{{ field.label }} {{ field }}</p>
+  <p>{{ field.label }} {{ field(class_="form-control") }}</p>
   <p><small>{% for error in field.errors %}{{ error }}{% endfor %}</small></p>
   {% endif %} {% endfor %}
-  <input type="submit" value="Register" />
+  <input type="submit" value="Register" class="btn btn-primary" />
 </form>
 {% endblock %}

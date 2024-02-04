@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %}Secret{%endblock%} {% block content
+%}
+<h1 class="display-1">{{user.username}}</h1>
+<table>
+  <tr>
+    <td>Email:</td>
+    <td>{{user.email}}</td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td>{{user.first_name}} {{user.last_name}}</td>
+  </tr>
+</table>
+{% if session['username'] == user.username %}
+<form action="/users/{{user.username}}/delete" method="POST">
+  <input type="submit" value="Delete User" class="btn btn-danger" />
+</form>
+{% endif %}
+
+<h2 class="display-2">Feedback</h2>
+{% if session['username'] == user.username %}
+<a
+  href="/users/{{user.username}}/feedback/add"
+  class="btn btn-outline-secondary"
+  >Add new feedback</a
+>
+{% endif %}
+<ul>
+  {% for post in user.feedback %} {% if session['username'] == user.username %}
+  <li>{{post.title}}</li>
+  <a href="/feedback/{{post.id}}/update" class="btn btn-outline-info">Edit</a>
+  <form action="/feedback/{{post.id}}/delete" method="POST">
+    <input type="submit" value="X" class="btn btn-outline-danger" />
+  </form>
+  {% else %}
+  <li>{{post.title}}</li>
+  {% endif %} {% endfor %}
+</ul>
+{%endblock%}

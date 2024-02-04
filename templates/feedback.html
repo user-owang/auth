@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %}New Feedback{% endblock %} {% block
+content %}
+<h1 class="display-1">Post Feedback</h1>
+<p class="lead">Fill out form below to leave feedback.</p>
+<form action="/users/{{session['username']}}/feedback/add" method="POST">
+  {{ form.hidden_tag() }} {% for field in form %} {% if field.widget.input_type
+  != 'hidden' %}
+  <p>{{ field.label }} {{ field(class_="form-control") }}</p>
+  <p><small>{% for error in field.errors %}{{ error }}{% endfor %}</small></p>
+  {% endif %} {% endfor %}
+  <p><small>Written by {{session['username']}}</small></p>
+  <input type="submit" value="Post" class="btn btn-outline-secondary" />
+</form>
+{% endblock %}

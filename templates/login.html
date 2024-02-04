@@ -8,9 +8,9 @@
 <form action="/login" method="POST">
   {{ form.hidden_tag() }} {% for field in form %} {% if field.widget.input_type
   != 'hidden' %}
-  <p>{{ field.label }} {{ field }}</p>
+  <p>{{ field.label }} {{ field(class_="form-control") }}</p>
   <p><small>{% for error in field.errors %}{{ error }}{% endfor %}</small></p>
   {% endif %} {% endfor %}
-  <input type="submit" value="Register" />
+  <input type="submit" value="Log in" class="btn btn-primary" />
 </form>
 {% endblock %}
